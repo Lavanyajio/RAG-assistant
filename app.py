@@ -2,9 +2,9 @@
 import logging
 from pathlib import Path
 
-import gradio as gr
+# import gradio as gr
 
-
+import streamlit as gr
 
 from rag_assistant.config import settings
 from rag_assistant.llm import LLMError
