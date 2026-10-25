@@ -10,6 +10,7 @@ from .config import Settings, settings as default_settings
 from .documents import chunk_pages, file_hash, load_file
 from .hybrid_index import HybridIndex, SearchHit
 from .llm import HFChatModel
+from .gemini_llm import GeminiChatModel
 
 logger = logging.getLogger(__name__)
 
@@ -61,8 +62,9 @@ class RAGPipeline:
     def __init__(self, llm=None, embedder=None, cfg: Settings = default_settings,
                  index: Optional[HybridIndex] = None):
         self.cfg = cfg
-        self.llm = llm or HFChatModel(cfg.llm_model, cfg.hf_token, cfg.llm_provider,
-                                      cfg.max_new_tokens, cfg.temperature)
+        # self.llm = llm or HFChatModel(cfg.llm_model, cfg.hf_token, cfg.llm_provider,
+        #                               cfg.max_new_tokens, cfg.temperature)
+        self.llm = llm or GeminiChatModel(api_key=cfg.gemini_api_key)
         self._embedder = embedder
         self.index = index if index is not None else HybridIndex.load(cfg.index_dir)
 

@@ -4,6 +4,8 @@ from pathlib import Path
 
 import gradio as gr
 
+
+
 from rag_assistant.config import settings
 from rag_assistant.llm import LLMError
 from rag_assistant.pipeline import RAGPipeline, format_sources
@@ -101,4 +103,9 @@ demo = build_ui()
 print("✅ UI built successfully")
 
 if __name__ == "__main__":
-    demo.queue().launch(server_name="127.0.0.1")
+    # demo.queue().launch(server_name="127.0.0.1")
+    build_ui().queue().launch(
+        server_name=settings.host,
+        server_port=settings.port,
+        share=True
+    )

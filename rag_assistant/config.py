@@ -33,6 +33,7 @@ class Settings:
     embedding_backend: str = os.getenv("EMBEDDING_BACKEND", "api")  # "api" or "local"
     max_new_tokens: int = _int("MAX_NEW_TOKENS", 700)
     temperature: float = _float("TEMPERATURE", 0.2)
+    gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
 
     # Retrieval
     chunk_size: int = _int("CHUNK_SIZE", 800)
